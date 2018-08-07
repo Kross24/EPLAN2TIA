@@ -34,7 +34,7 @@ using System.Collections.ObjectModel;
 
 namespace TIdEmArK
 {
-    static class Program
+    public class Program
     {
         /// <summary>
         /// Der Haupteinstiegspunkt für die Anwendung.
@@ -42,12 +42,80 @@ namespace TIdEmArK
         [STAThread]
         static void Main()
         {
+            AppDomain.CurrentDomain.AssemblyResolve += MyResolver;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Form1());                       
         }
+        //DebugHilfe ----- nur kopieren!!!!
+        //using (StreamWriter writer = File.AppendText(@"C:\Users\benjamin.kross\Desktop\WriteLines.txt"))
+        //{
+        //  writer.WriteLine(node1.Name + "Node1 (Device)"+Environment.NewLine);
+        //}
 
-        
+#region Assembly Resolve (TIA Pfad DDLs)
+private static Assembly MyResolver(object sender, ResolveEventArgs args)
+        {
+            int index = args.Name.IndexOf(',');
+            if (index == -1)
+            {
+                return null;
+            }
+            string name = args.Name.Substring(0, index);
+
+            RegistryKey filePathReg = Registry.LocalMachine.OpenSubKey(
+                "SOFTWARE\\Siemens\\Automation\\Openness\\15.0\\PublicAPI\\15.0.0.0");
+
+            if (filePathReg == null)
+                return null;
+
+            object oRegKeyValue = filePathReg.GetValue(name);
+            if (oRegKeyValue != null)
+            {
+                string filePath = oRegKeyValue.ToString();
+
+                string path = filePath;
+                string fullPath = Path.GetFullPath(path);
+                if (File.Exists(fullPath))
+                {
+                    return Assembly.LoadFrom(fullPath);
+                }
+            }
+
+            return null;
+        }
+        #endregion
+
+        #region Statusabfrage Projekt geöffnet
+        public bool CurrentProject(TiaPortalProcess tiaProcess, TiaPortal _MyTiaPortal, Project _MyProject)
+        {
+            bool ProjectStatus;
+            IList<TiaPortalProcess> processes = TiaPortal.GetProcesses();
+            switch (processes.Count)
+            {
+                case 1:
+                    tiaProcess = processes[0];
+                    _MyTiaPortal = tiaProcess.Attach();
+
+                    if (_MyTiaPortal.Projects.Count <= 0)
+                    {
+                        ProjectStatus = false;
+                        return ProjectStatus;
+                    }
+                    _MyProject = _MyTiaPortal.Projects[0];
+                    ProjectStatus = true;                    
+                    break;
+
+                case 0:
+                    ProjectStatus = false;
+                    return ProjectStatus;
+
+                default:
+                    ProjectStatus = false;
+                    return ProjectStatus;
+            }
+            return ProjectStatus;
+        }
+        #endregion
     }
-
 }

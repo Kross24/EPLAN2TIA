@@ -1,0 +1,10 @@
+C:\Users\benjamin.kross\source\repos\TIdEmArK_V0\TIdEmArK\obj\Debug\TIdEmArK.csprojAssemblyReference.cache
+C:\Users\benjamin.kross\source\repos\TIdEmArK_V0\TIdEmArK\obj\Debug\TIdEmArK.Properties.Resources.resources
+C:\Users\benjamin.kross\source\repos\TIdEmArK_V0\TIdEmArK\obj\Debug\TIdEmArK.csproj.GenerateResource.cache
+C:\Users\benjamin.kross\source\repos\TIdEmArK_V0\TIdEmArK\obj\Debug\TIdEmArK.csproj.CoreCompileInputs.cache
+C:\Users\benjamin.kross\source\repos\TIdEmArK_V0\TIdEmArK\bin\Debug\TIdEmArK.exe.config
+C:\Users\benjamin.kross\source\repos\TIdEmArK_V0\TIdEmArK\bin\Debug\TIdEmArK.exe
+C:\Users\benjamin.kross\source\repos\TIdEmArK_V0\TIdEmArK\bin\Debug\TIdEmArK.pdb
+C:\Users\benjamin.kross\source\repos\TIdEmArK_V0\TIdEmArK\obj\Debug\TIdEmArK.exe
+C:\Users\benjamin.kross\source\repos\TIdEmArK_V0\TIdEmArK\obj\Debug\TIdEmArK.pdb
+C:\Users\benjamin.kross\source\repos\TIdEmArK_V0\TIdEmArK\obj\Debug\TIdEmArK.Form1.resources
